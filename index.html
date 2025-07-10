@@ -6,13 +6,20 @@
     <title>Document</title>
   </head>
   <style>
-    /* CSS style here */
+    .flex-container { 
+      display: flex; 
+      flex-direction: row; 
+      justify-content: space-between; 
+      align-items: center;
+      padding: 20px;
+    }
+    button{ background-color: black; color : white; border: none; cursor: pointer; }
   </style>
   <body>
-    <div style="background: lightgray">
+    <div class="flex-container" style="background: lightgray">
       <h2>Promo !</h2>
       <p><b>Summer Sale</b> – 30% off ends in 42h !</p>
-      <button type="button">Close</button>
+      <button type="button">X</button>
     </div>
 
     <script>
