@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .promo {
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .promo p {
+        margin: 0;
+    }
+    .promo button {
+        background-color: #000;
+        color: #fff;
+        border: none;
+    }
+    .countdown {
+        font-weight: bold;
+        color: #d32f2f;
+    }
+</style>
+<body>
+  <div class="promo" role="region" aria-label="limited time offer">
+<h2>Promo !</h2>
+  <p><strong>Summer Sale</strong> – 30% off ends in <span id="countdown" class="countdown">42h</span>!</p>
+  <button type="button" class="close" aria-label="Dismiss banner">×</button>
+</div>
+
+<script>
+function startCountdown() {
+    // Set the target end time (42 hours from now)
+    // You can change this to a specific date/time if needed
+    const now = new Date().getTime();
+    const endTime = now + (42 * 60 * 60 * 1000); // 42 hours in milliseconds
+    
+    const countdownElement = document.getElementById('countdown');
+    
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = endTime - now;
+        
+        if (timeLeft <= 0) {
+            countdownElement.textContent = 'EXPIRED';
+            countdownElement.style.color = '#666';
+            return;
+        }
+        
+        // Calculate time units
+        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        
+        // Format the display - always show seconds
+        if (hours > 0) {
+            countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+        } else if (minutes > 0) {
+            countdownElement.textContent = `${minutes}m ${seconds}s`;
+        } else {
+            countdownElement.textContent = `${seconds}s`;
+        }
+    }
+    
+    // Update immediately
+    updateCountdown();
+    
+    // Update every second
+    setInterval(updateCountdown, 1000);
+}
+
+// Start the countdown when the page loads
+document.addEventListener('DOMContentLoaded', startCountdown);
+</script>
+    
+</body>
+</html>
